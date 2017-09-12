@@ -21,9 +21,17 @@ public class MinimiseTicketCosts {
 	
 	public int getOptimalPrice(int[] array, int currentTicketDay){
 		int amount=0;
-		
+		int []sevenDaysArray;
 		
 		for (int i=array.length-1; i>-1; i--){
+			//from end to beginning 
+			System.out.println("array from end "+array[i]);
+			
+			for(int j=i; j<array.length;j++){
+				//from current to end
+				System.out.println("array from current "+array[j]);
+				
+			}
 			
 			System.out.println("day "+array[i]);					
 		}
