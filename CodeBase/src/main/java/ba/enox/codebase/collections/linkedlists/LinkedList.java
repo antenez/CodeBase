@@ -2,7 +2,7 @@ package ba.enox.codebase.collections.linkedlists;
 //https://www.youtube.com/watch?v=195KUinjBpU
 
 public class LinkedList {
-	SimpleLink firstLink;
+	Node firstLink;
 	
 	//To show that at every beginning first link is nulls
 	public LinkedList() {
@@ -21,14 +21,14 @@ public class LinkedList {
 	 */
 			
 	public void insertNewLink(String nameOfLink){
-		SimpleLink newLink = new SimpleLink(nameOfLink);
+		Node newLink = new Node(nameOfLink);
 		newLink.next=firstLink;
 		firstLink=newLink;
 	}
 	
 	//Remove item work like changing first linkt o be value of firstLink next element.
-	public SimpleLink removeFirstLink(){
-		SimpleLink linkReference = firstLink;
+	public Node removeFirstLink(){
+		Node linkReference = firstLink;
 		if (!isEmpty()){
 			firstLink=firstLink.next;
 		}else{
@@ -41,7 +41,7 @@ public class LinkedList {
 	//looptrough list
 	//display from first link until there is no next
 	public void displayItems(){
-		SimpleLink theLink = firstLink;
+		Node theLink = firstLink;
 		
 		while(theLink!=null){
 			theLink.display();
@@ -51,8 +51,8 @@ public class LinkedList {
 		}
 	}
 	
-	public SimpleLink findingItemOnTheList(String name){
-		SimpleLink theLink = firstLink;
+	public Node findingItemOnTheList(String name){
+		Node theLink = firstLink;
 		
 		if(!isEmpty()){
 			while(theLink.nameOfItem!=name){
@@ -78,9 +78,9 @@ public class LinkedList {
 	 * 	if occurs elswhere ... find the link which nest is our target
 	 * 	take next of the next founded before and assign it to link before
 	 */
-	public SimpleLink removeLink(String nameOfItem){
-		SimpleLink currentLik = firstLink;
-		SimpleLink previousLink = firstLink;//To have it initialized
+	public Node removeLink(String nameOfItem){
+		Node currentLik = firstLink;
+		Node previousLink = firstLink;//To have it initialized
 		
 		while (nameOfItem!=currentLik.nameOfItem){
 			if(currentLik.next==null){

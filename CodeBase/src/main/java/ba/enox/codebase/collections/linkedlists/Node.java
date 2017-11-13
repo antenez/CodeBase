@@ -16,6 +16,10 @@ public class Node {
 		this.nameOfItem=nameOfItem;
 		next = null;
 	}
+	public void addNext(String value){
+
+		this.next=new Node (value);
+	}
 	
 	
 	public void display(){
