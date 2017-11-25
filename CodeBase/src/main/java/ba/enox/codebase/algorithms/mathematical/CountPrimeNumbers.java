@@ -1,5 +1,7 @@
 package ba.enox.codebase.algorithms.mathematical;
 
+import java.util.function.IntPredicate;
+
 public class CountPrimeNumbers {
 	
 	/*
@@ -15,8 +17,6 @@ public class CountPrimeNumbers {
 		for (int i = 1; i < 1000; i++) {
 			System.out.println("Is prime "+i+" = "+isPrimeNumber(i));
 		}
-		
-
 	}
 	
 	public static boolean isPrimeNumber(int number){

@@ -1,6 +1,8 @@
 package ba.enox.zal;
 
-public class ThirdTask {
+import java.math.BigInteger;
+
+public class CombineNumbersInString {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -15,7 +17,7 @@ public class ThirdTask {
 			resultS+=aS.charAt(i);
 			resultS+=bS.charAt(i);
 			System.out.println(resultS);
-			if(Integer.valueOf(resultS)>100000000){
+			if(new BigInteger(resultS+"").compareTo(new BigInteger(100000000+""))==1){
 				System.out.println("vece od 100xxx");
 				//return -1;
 			}

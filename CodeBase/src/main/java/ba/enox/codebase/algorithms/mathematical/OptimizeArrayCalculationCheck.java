@@ -7,6 +7,7 @@ import javax.print.attribute.HashAttributeSet;
 
 public class OptimizeArrayCalculationCheck {
 	
+	//Task was to optimize this one.
 	public int solution(int[]A){
 		int N =A.length;
 		int result=1;

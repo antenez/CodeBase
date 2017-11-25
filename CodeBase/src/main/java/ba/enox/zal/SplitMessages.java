@@ -2,7 +2,7 @@ package ba.enox.zal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstTask {
+public class SplitMessages {
 
     public int solution(String s, int k) {
         String[] words = s.split(" ");

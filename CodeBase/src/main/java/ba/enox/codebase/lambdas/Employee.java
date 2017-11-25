@@ -1,6 +1,7 @@
 package ba.enox.codebase.lambdas;
 
 class Employee {
+
 	private String name;
 	private int age;
 
@@ -24,5 +25,11 @@ class Employee {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return name;
 	}
 }

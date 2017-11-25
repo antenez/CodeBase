@@ -33,6 +33,10 @@ public class StringOperationsTest extends TestCase {
 
 	}
 
+	@Test
+	public void testIsRotationStringOfAnother(){
+		//TODO
+	}
 
 
 }

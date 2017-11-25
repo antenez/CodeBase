@@ -16,62 +16,72 @@ public class StringOperations {
 		}
 		return false;
 	}
-	
-	
-	
-	
-	// check can we transform source string to destinaton in limited number of changes with only delete last and append last are permitted
-	
-	    
-	    public  boolean canSourceBeConvertedToDestinationWithDeleteAndAppendNumberOfSteps(String src,String dest, int k) {
-	    	char[] s=src.toCharArray() ;
-	    	char[] t=dest.toCharArray();
-	    	// We have more operations than we need to delete and rewrite the string
-	        if (s.length + t.length < k) {
-	            return true;
-	        }
-	        // Iterate through string matching characters
-	        int i = -1;
-	        while(i++ < Math.min(s.length, t.length) - 1) {
-	            if (s[i] != t[i]) {
-	                break;
-	            }
-	        }
-	        
-	        // The strings are the same
-	        if (i == s.length && s.length == t.length) {
-	            // if k is odd, there will always be 1 operation left over
-	            // else, you can delete and re-append last character to use up k operations
-	            return ((k & 1) == 1) ? false : true;
-	        }
 
-	        // Else
-	        // Reduce k by number of necessary deletions and insertions
-	        k = k - (s.length - i) - (t.length - i);
+	// check can we transform source string to destinaton in limited number of
+	// changes with only delete last and append last are permitted
+	public boolean canSourceBeConvertedToDestinationWithDeleteAndAppendNumberOfSteps(String src, String dest, int k) {
+		char[] s = src.toCharArray();
+		char[] t = dest.toCharArray();
+		// We have more operations than we need to delete and rewrite the string
+		if (s.length + t.length < k) {
+			return true;
+		}
+		// Iterate through string matching characters
+		int i = -1;
+		while (i++ < Math.min(s.length, t.length) - 1) {
+			if (s[i] != t[i]) {
+				break;
+			}
+		}
+		// The strings are the same
+		if (i == s.length && s.length == t.length) {
+			// if k is odd, there will always be 1 operation left over
+			// else, you can delete and re-append last character to use up k
+			// operations
+			return ((k & 1) == 1) ? false : true;
+		}
+		// Else
+		// Reduce k by number of necessary deletions and insertions
+		k = k - (s.length - i) - (t.length - i);
 
-	        // If k < 0 or there is an odd number of operations left over, false
-	        // else we need exactly k operations or the number of extra ops is even, true
-	        return (k < 0 || (k & 1) == 1) ? false : true;
-	        
-	    }
-	    
-	    
-	    
-	    public boolean BracketsValidator(String str){
-	    	Stack<String> openingBrackets = new Stack<String>();
-	    	for(char s:str.toCharArray()){
-	    		if(s=='{' || s=='[' || s=='('){
-	    			openingBrackets.push(String.valueOf(s));	    			
-	    		}else{
-	    			String c = openingBrackets.pop();
-	    			if((c=="(" && s!=')') || (c=="{" && s!='}' ) || (c=="[" && s!=']' ) ){
-	    				return false;
-	    			}
-	    		}
-	    	}
-	    	return   openingBrackets.isEmpty();
-	    }
-	   
+		// If k < 0 or there is an odd number of operations left over, false
+		// else we need exactly k operations or the number of extra ops is even,
+		// true
+		return (k < 0 || (k & 1) == 1) ? false : true;
+
+	}
+
+	public boolean BracketsValidator(String str) {
+		Stack<String> openingBrackets = new Stack<String>();
+		for (char s : str.toCharArray()) {
+			if (s == '{' || s == '[' || s == '(') {
+				openingBrackets.push(String.valueOf(s));
+			} else {
+				String c = openingBrackets.pop();
+				if ((c == "(" && s != ')') || (c == "{" && s != '}') || (c == "[" && s != ']')) {
+					return false;
+				}
+			}
+		}
+		return openingBrackets.isEmpty();
+	}
 	
+	
+	
+	/*
+	 * Implement a function that checks if two strings are circularly identical e.g. "aabbb" "bbaab" 
+	 */
+	boolean isRotation(String s1,String s2) {
+	    return (s1.length() == s2.length()) && ((s1+s1).indexOf(s2) != -1);
+	}
+	/*
+	 * Recursive reverse of string
+	 */
+	public static String reverseStringRecursively(String s) {
+		if (s.length() < 1) {
+			return s;
+		}
+		return reverseStringRecursively(s.substring(1)) + s.charAt(0);
+	}
 
 }
