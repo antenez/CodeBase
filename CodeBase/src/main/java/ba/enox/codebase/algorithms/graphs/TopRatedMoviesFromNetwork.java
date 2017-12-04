@@ -1,8 +1,10 @@
 package ba.enox.codebase.algorithms.graphs;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -43,39 +45,65 @@ public class TopRatedMoviesFromNetwork {
 	            return similarMovies;
 	        }
 	 
-	        /*
-	         * Implement a function to return top rated movies in the network of movies 
-	         * reachable from the current movie
-	         * eg:            A(Rating 1.2)
-	         *               /   \
-	         *            B(2.4)  C(3.6)
-	         *              \     /
-	         *               D(4.8)
-	         * In the above example edges represent similarity and the number is rating.
-	         * getMovieRecommendations(A,2)should return C and D (sorting order doesn't matter so it can also return D and C)
-	         * getMovieRecommendations(A,4) should return A, B, C, D (it can also return these in any order eg: B,C,D,A)
-	         * getMovieRecommendations(A,1) should return D. Note distance from A to D doesn't matter, 
-	         *                            return the highest  rated.
-	         *     
-	         *     @param movie
-	         *     @param numTopRatedSimilarMovies 
-	         *                      number of movies we want to return
-	         *     @return List of top rated similar movies
-	         */
-	        public SortedSet<Movie> visited = new TreeSet<TopRatedMoviesFromNetwork.Movie>();
-	        public Set<Movie>getMovieRecommendations(Movie movie, int numTopRatedSimilarMovies){
-	       
-	                visited.add(movie);
-	                for (Movie m : movie.getSimilarMovies()){
-	                    if (!visited.contains(m))
-	                        getMovieRecommendations(m, -1);
-	                }
-	                if(numTopRatedSimilarMovies > -1)
-	                    return null // TODO visited.
-	                return null;
-	            }
+	      
+	
 
 	}
+	
+	  /*
+     * Implement a function to return top rated movies in the network of movies 
+     * reachable from the current movie
+     * eg:            A(Rating 1.2)
+     *               /   \
+     *            B(2.4)  C(3.6)
+     *              \     /
+     *               D(4.8)
+     * In the above example edges represent similarity and the number is rating.
+     * getMovieRecommendations(A,2)should return C and D (sorting order doesn't matter so it can also return D and C)
+     * getMovieRecommendations(A,4) should return A, B, C, D (it can also return these in any order eg: B,C,D,A)
+     * getMovieRecommendations(A,1) should return D. Note distance from A to D doesn't matter, 
+     *                            return the highest  rated.
+     *     
+     *     @param movie
+     *     @param numTopRatedSimilarMovies 
+     *                      number of movies we want to return
+     *     @return List of top rated similar movies
+     */
+	
+	 public Set<Movie>getMovieRecommendations(Movie movie, int numTopRatedSimilarMovies){
+		 LinkedHashSet<Movie> visited = new LinkedHashSet<TopRatedMoviesFromNetwork.Movie>();
+		 return getMovieRecommendations( movie,  numTopRatedSimilarMovies, visited);
+	 }
+   
+	
+    public Set<Movie>getMovieRecommendations(Movie movie, int numTopRatedSimilarMovies, LinkedHashSet<Movie>visited){
+	       
+        visited.add(movie);
+        for (Movie m : movie.getSimilarMovies()){
+            if (!visited.contains(m))
+                getMovieRecommendations(m, -1,visited);
+        }
+        if(numTopRatedSimilarMovies > -1){
+        	System.out.println("+++ByRating descending+++"); 
+        	LinkedHashSet<Movie> sorted = new LinkedHashSet<>();
+         	visited.stream().sorted((Movie m1, Movie m2) -> {
+        		 Float rating1 = Float.valueOf(m1.getRating());
+        	     Float rating2 = Float.valueOf(m2.getRating());
+        	     return rating2.compareTo(rating1);
+        	}).limit(numTopRatedSimilarMovies).forEach(e -> {
+        		System.out.println("Movie ID "+e.movieId+" rating: "+e.getRating());
+        		sorted.add(e);	
+        		});
+         	
+         	System.out.println("+++ByRating descending REPRINT to see persisted changes+++"); 
+         	visited.stream().forEach(e -> System.out.println("Movie ID "+e.movieId+" rating: "+e.getRating()));
+         	
+         	System.out.println("+++Sorted descending REPRINT to see persisted changes+++"); 
+         	sorted.stream().forEach(e -> System.out.println("Movie ID "+e.movieId+" rating: "+e.getRating()));
+            return null;
+        }
+        return null;
+    }
 	
 	private boolean DepthFirstSearch(Movie movie,  Set sortedMovies, int numberOfRecomendations, HashSet<Integer> visited ){
 		return true;
