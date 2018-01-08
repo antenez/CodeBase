@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import ba.enox.codebase.algorithms.graphs.TopRatedMoviesFromNetwork.Movie;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.junit.Test;
@@ -36,11 +37,18 @@ public class TopRatedMoviesFromNetworkTest {
 		s.add(m2);
 		s.add(m3);
 		
+		LinkedHashSet<Movie> result = trm.getMovieRecommendations(m1, 4);
+		Movie[] array=  result.toArray(new Movie[result.size()]);
+		assertEquals("id not equals "+5,5,array[0].getId());
+		assertEquals("id not equals "+4,4,array[1].getId());
+		assertEquals("id not equals "+5,5,array[2].getId());
+		assertEquals("id not equals "+2,2,array[3].getId());
+		assertEquals("rating not equals "+10+".0",10+".0",array[0].getRating()+"");
+		assertEquals("rating not equals "+8+".0",8+".0",array[1].getRating()+"");
+		assertEquals("rating not equals "+8+".0",8+".0",array[2].getRating()+"");
+		assertEquals("rating not equals "+6+".0",6+".0",array[3].getRating()+"");
 		
-		trm.getMovieRecommendations(m1, 2);
 		
-		
-		fail("Not yet implemented");
 	}
 	
 	private Set<Movie> prepareRelatedMovies(){

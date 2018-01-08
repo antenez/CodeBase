@@ -70,13 +70,13 @@ public class TopRatedMoviesFromNetwork {
      *     @return List of top rated similar movies
      */
 	
-	 public Set<Movie>getMovieRecommendations(Movie movie, int numTopRatedSimilarMovies){
+	 public LinkedHashSet<Movie>getMovieRecommendations(Movie movie, int numTopRatedSimilarMovies){
 		 LinkedHashSet<Movie> visited = new LinkedHashSet<TopRatedMoviesFromNetwork.Movie>();
 		 return getMovieRecommendations( movie,  numTopRatedSimilarMovies, visited);
 	 }
    
 	
-    public Set<Movie>getMovieRecommendations(Movie movie, int numTopRatedSimilarMovies, LinkedHashSet<Movie>visited){
+    public LinkedHashSet<Movie>getMovieRecommendations(Movie movie, int numTopRatedSimilarMovies, LinkedHashSet<Movie>visited){
 	       
         visited.add(movie);
         for (Movie m : movie.getSimilarMovies()){
@@ -98,16 +98,10 @@ public class TopRatedMoviesFromNetwork {
          	System.out.println("+++ByRating descending REPRINT to see persisted changes+++"); 
          	visited.stream().forEach(e -> System.out.println("Movie ID "+e.movieId+" rating: "+e.getRating()));
          	
-         	System.out.println("+++Sorted descending REPRINT to see persisted changes+++"); 
+         	System.out.println("+++Sorted descending REPRINT but only sorted limited+++"); 
          	sorted.stream().forEach(e -> System.out.println("Movie ID "+e.movieId+" rating: "+e.getRating()));
-            return null;
+            return sorted;
         }
-        return null;
-    }
-	
-	private boolean DepthFirstSearch(Movie movie,  Set sortedMovies, int numberOfRecomendations, HashSet<Integer> visited ){
-		return true;
-	}
-	
-	
+        return visited;
+    }	
 }
