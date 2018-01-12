@@ -41,7 +41,7 @@ public class TopRatedMoviesFromNetworkTest {
 		Movie[] array=  result.toArray(new Movie[result.size()]);
 		assertEquals("id not equals "+5,5,array[0].getId());
 		assertEquals("id not equals "+4,4,array[1].getId());
-		assertEquals("id not equals "+5,5,array[2].getId());
+		assertEquals("id not equals "+6,6,array[2].getId());
 		assertEquals("id not equals "+2,2,array[3].getId());
 		assertEquals("rating not equals "+10+".0",10+".0",array[0].getRating()+"");
 		assertEquals("rating not equals "+8+".0",8+".0",array[1].getRating()+"");
