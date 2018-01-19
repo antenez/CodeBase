@@ -83,5 +83,46 @@ public class StringOperations {
 		}
 		return reverseStringRecursively(s.substring(1)) + s.charAt(0);
 	}
+	
+	
+	/*
+	 * You have a large text file containing words.
+	 * Given any two words, find the shortest distance (in terms of number of words) between them in the file.
+	 * Can you make the searching operation in O(1) time? 
+	 * What about the space complexity for your solution?
+	 *
+	 * We will assume for this question that the word order does not matter. This is a question you should ask your interviewer. If the word order does matter, we can make the small modification shown in the code below.
+	 * To solve this problem, simply traverse the file and for every occurrence of word1 and word2, compare difference of positions and update the current minimum.
+	 *
+	 * To solve this problem in less time (but more space), we can create a hash table with each word and the locations where it occurs. We then just need to find the minimum (arithmetic) difference in the locations (e.g., abs(word0.loc[1] - word1.loc[5])).
+	 * To find the minimum arithmetic difference, we take each location for word1 (e.g.: 0, 3} and do a modified binary search for it in word2’s location list, returning the closest number. Our search for 3, for example, in {2, 7, 9} would return 1. The minimum of all these binary searches is the shortest distance.
+	 */
+	
+	public int returnShortestDistanceBetweenWordsInList(String[] words, String word1, String word2) {
+		int minDistance= Integer.MAX_VALUE;
+		int w1position = -1, w2position = -1;
+		int positionCounter=0;
+		
+		for(String currentWord : words){
+			if(currentWord==word1){
+				w1position = positionCounter; 
+				
+				if(w2position!=-1 && minDistance>Math.abs(w1position-w2position)){
+					minDistance =Math.abs(w1position-w2position); 
+				}
+			}
+			if(currentWord==word2){
+				w2position=positionCounter;
+				if(w1position!=-1 && minDistance>Math.abs(w1position-w2position)){
+					minDistance =Math.abs(w1position-w2position); 
+				}
+			}
+			positionCounter++;
+		}
+		return minDistance==Integer.MAX_VALUE? -1: minDistance;
+	}
+	
+	
+	
 
 }

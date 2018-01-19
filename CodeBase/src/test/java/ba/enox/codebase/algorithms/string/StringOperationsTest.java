@@ -2,11 +2,13 @@ package ba.enox.codebase.algorithms.string;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import junit.framework.TestCase;
 
 public class StringOperationsTest extends TestCase {
+
 	private StringOperations so = new StringOperations();
 
 	@Test
@@ -14,18 +16,16 @@ public class StringOperationsTest extends TestCase {
 		assertTrue("String is not palindrom ", so.isStringPalindrome("anavolimilovana"));
 		assertFalse("String should not be palindrom ", so.isStringPalindrome("ana1volimilovana"));
 		assertFalse("String should not be palindrom ", so.isStringPalindrome("anavolimilov1ana"));
-		
-		
-		
-		
-		
-	}
-	@Test
-	public void testChangesInString() {
-		assertTrue("String is not palindrom ", so.canSourceBeConvertedToDestinationWithDeleteAndAppendNumberOfSteps("asd","asd",7));
 
 	}
-	
+
+	@Test
+	public void testChangesInString() {
+		assertTrue("String is not palindrom ",
+				so.canSourceBeConvertedToDestinationWithDeleteAndAppendNumberOfSteps("asd", "asd", 7));
+
+	}
+
 	@Test
 	public void testBracketsValidator() {
 		assertTrue("Brackets are not paired  ", so.BracketsValidator("{{[[[{}{}{((()()()))}]]]}}"));
@@ -34,9 +34,28 @@ public class StringOperationsTest extends TestCase {
 	}
 
 	@Test
-	public void testIsRotationStringOfAnother(){
-		//TODO
+	public void testIsRotationStringOfAnother() {
+		// TODO
 	}
 
+	@Test
+	public void testReturnShortestDistanceBetweenWordsInList() {
+		//mixed case
+		String[] book = new String[] { "sad", "eno", "asd","asd", "asd", "ahmed", "asd", "ahmed", "asd", "eno", "asd" };
+		Assert.assertEquals(2,so.returnShortestDistanceBetweenWordsInList(book, "eno", "ahmed"));
+		
+		//begin and end case
+		book = new String[] { "eno", "asd","asd", "ahmed" };
+		Assert.assertEquals(3,so.returnShortestDistanceBetweenWordsInList(book, "eno", "ahmed"));
+		
+		//reversed word count
+		book = new String[] { "eno", "ahmed","eno", "ahmed" };
+		Assert.assertEquals(1,so.returnShortestDistanceBetweenWordsInList(book, "eno", "ahmed"));
+		
+		//not found case
+		book = new String[] { "eno", "ahmed","eno", "ahmed" };
+		Assert.assertEquals(-1,so.returnShortestDistanceBetweenWordsInList(book, "aa", "bb"));
+
+	}
 
 }
