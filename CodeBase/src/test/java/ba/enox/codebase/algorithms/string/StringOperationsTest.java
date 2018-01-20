@@ -2,6 +2,9 @@ package ba.enox.codebase.algorithms.string;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -57,5 +60,20 @@ public class StringOperationsTest extends TestCase {
 		Assert.assertEquals(-1,so.returnShortestDistanceBetweenWordsInList(book, "aa", "bb"));
 
 	}
+	
+	@Test
+	public void testFindLongestWordWhichContainsOtherTwo(){
+		List<String> list = new ArrayList<>();
+		list.add("haho");
+		list.add("kjshdlkahfl");
+		list.add("abalaba");
+		list.add("kokolo");
+		list.add("abal");
+		list.add(	 "aba"); 
+		list.add("ha");
+		
+		Assert.assertEquals("abalaba",so.findLongestWordWhichContainsOtherTwo(list));
+	}
+	
 
 }

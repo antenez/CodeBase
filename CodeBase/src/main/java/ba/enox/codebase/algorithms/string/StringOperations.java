@@ -1,6 +1,12 @@
 package ba.enox.codebase.algorithms.string;
 
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import java.util.Stack;
+import java.util.TreeSet;
 
 public class StringOperations {
 
@@ -120,6 +126,49 @@ public class StringOperations {
 			positionCounter++;
 		}
 		return minDistance==Integer.MAX_VALUE? -1: minDistance;
+	}
+	
+	
+//	Write a program to find the longest word made of other words.
+	public String findLongestWordWhichContainsOtherTwo(List<String> listOfStrings){
+		if(null==listOfStrings){
+			return "List is null";
+		}
+		String returnString="";
+		
+		Comparator<String> comparator = new Comparator<String>() {
+			
+			@Override
+			public int compare(String o1, String o2) {
+				if(o1.length()>o2.length()){
+					return -1;
+				}else if(o1.length()<o2.length()){
+					return 1;
+				}
+				
+				return o1.compareTo(o2);
+			}
+		};
+		Set<String> treeSetOfStrings = new TreeSet<>(comparator);
+		treeSetOfStrings.addAll(listOfStrings);
+		
+		Iterator<String> iterator = treeSetOfStrings.iterator();
+		while(iterator.hasNext() && returnString==""){
+			String current = iterator.next();
+			for(int i =1; i< current.length();i++){
+				String part1, part2;
+				part1= current.substring(0,i);
+				part2= current.substring(i);
+				System.out.println("Check contains part1 "+ part1+" "+treeSetOfStrings.contains(part1));
+				System.out.println("Check contains part2 "+ part2+" "+treeSetOfStrings.contains(part2));
+				if(treeSetOfStrings.contains(part1) && treeSetOfStrings.contains(part2)){
+					returnString = current;
+					break;
+				}
+			}			
+		}
+		
+		return returnString;
 	}
 	
 	
