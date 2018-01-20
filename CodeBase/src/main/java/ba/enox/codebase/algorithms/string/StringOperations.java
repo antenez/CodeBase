@@ -2,8 +2,10 @@ package ba.enox.codebase.algorithms.string;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeSet;
@@ -70,6 +72,25 @@ public class StringOperations {
 			}
 		}
 		return openingBrackets.isEmpty();
+	}
+	
+	//one more way to solve it with map and stack.
+	public  boolean bracketsValidator2(String expression) {
+	    Map<Character, Character> openClosePair = new HashMap<Character, Character>();
+	    openClosePair.put(')', '(');
+	    openClosePair.put('}', '{');
+	    openClosePair.put(']', '[');        
+	    Stack<Character> stack = new Stack<Character>();
+	    for(char ch : expression.toCharArray()) {
+	        if(openClosePair.containsKey(ch)) {
+	            if(stack.pop() != openClosePair.get(ch)) {
+	                return false;
+	            }
+	        } else if(openClosePair.values().contains(ch)) {
+	            stack.push(ch); 
+	        }
+	    }
+	    return stack.isEmpty();
 	}
 	
 	
@@ -159,8 +180,8 @@ public class StringOperations {
 				String part1, part2;
 				part1= current.substring(0,i);
 				part2= current.substring(i);
-				System.out.println("Check contains part1 "+ part1+" "+treeSetOfStrings.contains(part1));
-				System.out.println("Check contains part2 "+ part2+" "+treeSetOfStrings.contains(part2));
+//				System.out.println("Check contains part1 "+ part1+" "+treeSetOfStrings.contains(part1));
+//				System.out.println("Check contains part2 "+ part2+" "+treeSetOfStrings.contains(part2));
 				if(treeSetOfStrings.contains(part1) && treeSetOfStrings.contains(part2)){
 					returnString = current;
 					break;

@@ -33,6 +33,8 @@ public class StringOperationsTest extends TestCase {
 	public void testBracketsValidator() {
 		assertTrue("Brackets are not paired  ", so.BracketsValidator("{{[[[{}{}{((()()()))}]]]}}"));
 		assertFalse("Brackets are paired  ", so.BracketsValidator("{{[[[{}{}{(((()()()))}]]]}}"));
+		assertTrue("Brackets are not paired  ", so.bracketsValidator2("{{[[[{}{}{((()()()))}]]]}}"));
+		assertFalse("Brackets are paired  ", so.bracketsValidator2("{{[[[{}{}{(((()()()))}]]]}}"));
 
 	}
 
