@@ -1,7 +1,5 @@
 package ba.enox.codebase.algorithms.mathematical;
 
-import java.util.function.IntPredicate;
-
 public class CountPrimeNumbers {
 	
 	/*
