@@ -1,6 +1,5 @@
 package ba.enox.codebase.algorithms.string;
 
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -122,7 +121,7 @@ public class StringOperations {
 	 * To solve this problem, simply traverse the file and for every occurrence of word1 and word2, compare difference of positions and update the current minimum.
 	 *
 	 * To solve this problem in less time (but more space), we can create a hash table with each word and the locations where it occurs. We then just need to find the minimum (arithmetic) difference in the locations (e.g., abs(word0.loc[1] - word1.loc[5])).
-	 * To find the minimum arithmetic difference, we take each location for word1 (e.g.: 0, 3} and do a modified binary search for it in word2’s location list, returning the closest number. Our search for 3, for example, in {2, 7, 9} would return 1. The minimum of all these binary searches is the shortest distance.
+	 * To find the minimum arithmetic difference, we take each location for word1 (e.g.: 0, 3} and do a modified binary search for it in word2ï¿½s location list, returning the closest number. Our search for 3, for example, in {2, 7, 9} would return 1. The minimum of all these binary searches is the shortest distance.
 	 */
 	
 	public int returnShortestDistanceBetweenWordsInList(String[] words, String word1, String word2) {
